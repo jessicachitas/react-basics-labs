@@ -1,25 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import Task from './components/Task';
+import React, { useState } from 'react';
 
 function App() {
+
+  const [ taskState, setTaskState ] = useState({
+    tasks: [
+      { id: 1, title:"Dishes", description: "Empty dishwasher", deadline: "Today" },
+      { id: 2, title: "Laundry", description: "Fold clothes and put away", deadline: "Tomorrow" },
+      { id: 3, title: "Tidy up", deadline: "Today" },
+      { id: 4, title: "Clean room", deadline: "Tomorrow" },
+      { id: 5, title: "Mop Floor", deadline: "Tomorrow" }
+    ]
+  });
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>Tasky</h1>
+      {taskState.tasks.map(
+        (task) => (              
+          <Task 
+            title={task.title}
+            description={task.description}
+            deadline={task.deadline}
+            key={task.id}
+          />
+        )
+      )} 
     </div>
   );
+
 }
 
 export default App;
